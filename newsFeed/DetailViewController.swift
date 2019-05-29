@@ -10,21 +10,26 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    @IBOutlet weak var detailImageView: UIImageView!
+    @IBOutlet weak var detailTitleLabel: UILabel!
+    @IBOutlet weak var detailDescriptionTextView: UITextView!
+    @IBOutlet weak var detailDateLabel: UILabel!
+    
+    var article: Article?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        let image = loadImage(imageUrl: article?.urlToImage)
+        detailImageView.image = image
+        detailTitleLabel.text = article?.title
+        detailDescriptionTextView.text = article?.description
+        detailDateLabel.text = article?.publishedAt
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func loadImage(imageUrl: String?) -> UIImage? {
+        guard let imageURL = URL(string: imageUrl ?? "non"),
+            let data = try? Data(contentsOf: imageURL) else { return UIImage(named: "defoltNewsImage")}
+        return UIImage(data: data)
     }
-    */
-
 }
