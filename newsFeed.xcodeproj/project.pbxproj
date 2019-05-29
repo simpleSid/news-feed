@@ -15,6 +15,7 @@
 		AABBC05D229DBB4D00D98C54 /* OneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABBC05C229DBB4D00D98C54 /* OneTableViewCell.swift */; };
 		AABBC05F229DC60800D98C54 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABBC05E229DC60800D98C54 /* DetailViewController.swift */; };
 		AABBC061229DCEA200D98C54 /* NewsDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABBC060229DCEA200D98C54 /* NewsDataModel.swift */; };
+		AAC98067229F1A85001B1ADA /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC98066229F1A85001B1ADA /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		AABBC05C229DBB4D00D98C54 /* OneTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneTableViewCell.swift; sourceTree = "<group>"; };
 		AABBC05E229DC60800D98C54 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		AABBC060229DCEA200D98C54 /* NewsDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDataModel.swift; sourceTree = "<group>"; };
+		AAC98066229F1A85001B1ADA /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			children = (
 				AA329539229C6AC50099649B /* AppDelegate.swift */,
 				AA32953B229C6AC50099649B /* ViewController.swift */,
+				AAC98066229F1A85001B1ADA /* NetworkManager.swift */,
 				AA32953D229C6AC50099649B /* Main.storyboard */,
 				AABBC060229DCEA200D98C54 /* NewsDataModel.swift */,
 				AABBC05E229DC60800D98C54 /* DetailViewController.swift */,
@@ -144,6 +147,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAC98067229F1A85001B1ADA /* NetworkManager.swift in Sources */,
 				AABBC061229DCEA200D98C54 /* NewsDataModel.swift in Sources */,
 				AA32953C229C6AC50099649B /* ViewController.swift in Sources */,
 				AA32953A229C6AC50099649B /* AppDelegate.swift in Sources */,
@@ -297,6 +301,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QAR5YBA9QY;
 				INFOPLIST_FILE = newsFeed/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -315,6 +320,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QAR5YBA9QY;
 				INFOPLIST_FILE = newsFeed/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

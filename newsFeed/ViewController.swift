@@ -14,46 +14,20 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    
-    let arr = ["some text for article 1",
-               "some text for article 2",
-               "some text for article 3",
-               "some text for article 4",
-               "some text for article 5"]
+
     let identyfire = "newsCell"
     var news: NewsDataModel?
     var imageForPicture: UIImage?
+    var timer: Timer?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
         
-        getRequest()
-    }
-
-    func getRequest() {
-        let urlString = "https://newsapi.org/v2/everything?q=bitcoin&from=2019-04-29&sortBy=publishedAt&apiKey=b59bc1f13f884301a259ebc4a7c68af2"
-        guard let url = URL(string: urlString) else { return }
-        DispatchQueue.global().async {
-            let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
-                if let error = error {
-                    print("error in the rask \(error.localizedDescription)")
-                }
-                if let data = data {
-                    print(data)
-                    do {
-                        let json = try JSONDecoder().decode(NewsDataModel.self, from: data)
-                        self.news = json
-                    } catch {
-                        print("error trying to convert data to JSON \(error)")
-                        return
-                    }
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                }
-            }).resume()
-        }
+        self.tableView.delegate = self
+        self.searchBar.delegate = self
+        
+        
     }
     
     func loadImage(imageUrl: String?) -> UIImage? {
@@ -70,11 +44,15 @@ class ViewController: UIViewController {
                 }
             }
         }
-    }
+    }   
+    
 }
 
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 148.0
+    }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "News Feed"
@@ -85,7 +63,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arr.count
+        return news?.articles?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -105,3 +83,35 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     
 }
+
+
+extension ViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        searchBar.text ==
+//        когда 3 символа делать запрос
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let text = searchBar.text {
+            NetworkManager.getNews(requestText: text) { result in
+                switch result {
+                case .success(let json):
+                     DispatchQueue.main.async {
+                        self.news = json
+                        self.tableView.reloadData()
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+    }
+}
+
+
+
