@@ -9,33 +9,19 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    
-
     let identyfire = "newsCell"
     var news: NewsDataModel?
     var imageForPicture: UIImage?
-    var timer: Timer?
-    
+    var urlGenerator = UrlGenerationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.tableView.delegate = self
         self.searchBar.delegate = self
-        
-        
     }
-    
-    func loadImage(imageUrl: String?) -> UIImage? {
-        guard let imageURL = URL(string: imageUrl ?? "non"),
-            let data = try? Data(contentsOf: imageURL) else { return UIImage(named: "defoltNewsImage")}
-        return UIImage(data: data)
-    }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let dvc = segue.destination as? DetailViewController {
@@ -44,8 +30,10 @@ class ViewController: UIViewController {
                 }
             }
         }
-    }   
-    
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 }
 
 
@@ -70,38 +58,21 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identyfire) as? OneTableViewCell else {
             return UITableViewCell()
         }
-        
-        if let image = loadImage(imageUrl: news?.articles?[indexPath.row].urlToImage) {
-           cell.newsImageView.image = image
-        }
-        
+        cell.loadImage(imageUrl: news?.articles?[indexPath.row].urlToImage)
         cell.titleLabel.text = news?.articles?[indexPath.row].title ?? "asdfa"
         cell.visitedLabel.text = "visited"
-        
         return cell
     }
-    
-    
 }
 
 
 extension ViewController: UISearchBarDelegate {
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        searchBar.text ==
-//        когда 3 символа делать запрос
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if let text = searchBar.text {
-            NetworkManager.getNews(requestText: text) { result in
+        if let text = searchBar.text, text.count >= 3, let imageUrl =  urlGenerator.generate(text: text)  {
+            NetworkManager.getNews(requestUrl: imageUrl) { result in
                 switch result {
                 case .success(let json):
-                     DispatchQueue.main.async {
+                    DispatchQueue.main.async {
                         self.news = json
                         self.tableView.reloadData()
                     }
@@ -109,7 +80,13 @@ extension ViewController: UISearchBarDelegate {
                     print(error)
                 }
             }
+        } else {
+            self.news = nil
+            self.tableView.reloadData()
         }
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
     }
 }
 
