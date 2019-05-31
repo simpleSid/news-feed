@@ -30,8 +30,7 @@ class UrlGenerationManager {
         urlComponents.host = "newsapi.org"
         urlComponents.path = "/v2/everything"
         urlComponents.queryItems = queryItems
-        
-        print(urlComponents.url?.absoluteURL)
+
         return(urlComponents.url?.absoluteURL)
     }
 

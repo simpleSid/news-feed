@@ -14,22 +14,38 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailTitleLabel: UILabel!
     @IBOutlet weak var detailDescriptionTextView: UITextView!
     @IBOutlet weak var detailDateLabel: UILabel!
+    @IBOutlet weak var detailUrlLabel: UILabel!
     
-    var article: Article?
+    var article: Mymodel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let image = loadImage(imageUrl: article?.urlToImage)
-        detailImageView.image = image
-        detailTitleLabel.text = article?.title
-        detailDescriptionTextView.text = article?.description
-        detailDateLabel.text = article?.publishedAt
+        if let article = self.article {
+            detailTitleLabel.text = article.title
+            detailDescriptionTextView.text = article.description
+            detailDateLabel.text = article.publishedAt
+            detailUrlLabel.text = article.url
+            loadImage(imageUrl: article.urlToImage)
+        }
     }
-
-    func loadImage(imageUrl: String?) -> UIImage? {
-        guard let imageURL = URL(string: imageUrl ?? "non"),
-            let data = try? Data(contentsOf: imageURL) else { return UIImage(named: "defoltNewsImage")}
-        return UIImage(data: data)
+    
+    func loadImage(imageUrl: String) {
+        let imageManager = LoadImageManager()
+        let proxy = Proxy(manager: imageManager)
+        if let url = URL(string: imageUrl) {
+            proxy.loadImage(url: url) { [weak self] (data, response, error) in
+                guard let self = self else { return }
+                guard let data = data, error == nil else {
+                    DispatchQueue.main.async {
+                        self.detailImageView.image = UIImage(named: "defoltNewsImage")
+                    }
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.detailImageView.image = UIImage(data: data)
+                }
+            }
+        }
     }
 }

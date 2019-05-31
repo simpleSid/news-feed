@@ -12,11 +12,7 @@ class OneTableViewCell: UITableViewCell {
 
     @IBOutlet weak var newsImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var visitedLabel: UILabel! {
-        didSet {
-            visitedLabel.isHidden = true
-        }
-    }
+    @IBOutlet weak var visitedLabel: UILabel! 
     
     
     override func awakeFromNib() {
@@ -30,10 +26,10 @@ class OneTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func loadImage(imageUrl: String?) {
+    func loadImage(imageUrl: String) {
         let imageManager = LoadImageManager()
         let proxy = Proxy(manager: imageManager)
-        if let url = URL(string: imageUrl ?? "non") {
+        if let url = URL(string: imageUrl) {
             proxy.loadImage(url: url) { [weak self] (data, response, error) in
                 guard let self = self else { return }
                 guard let data = data, error == nil else {

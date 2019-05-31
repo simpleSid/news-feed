@@ -8,7 +8,7 @@
 
 import Foundation
 
-// заменить на массив данных?
+// тут надо все писать в core data и брать оттуда
 //var cacheDate: Data?
 
 class Proxy: LoadImageManagerProtocol {
