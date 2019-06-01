@@ -16,7 +16,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailDateLabel: UILabel!
     @IBOutlet weak var detailUrlLabel: UILabel!
     
-    var article: Mymodel?
+    var article: NewsWorkModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()

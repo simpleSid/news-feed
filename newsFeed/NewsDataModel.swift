@@ -31,11 +31,4 @@ struct Source: Codable {
 }
 
 
-struct Mymodel {
-    let title: String
-    let urlToImage: String
-    var isvisited: Bool
-    let publishedAt: String?
-    let description: String?
-    let url: String?
-}
+

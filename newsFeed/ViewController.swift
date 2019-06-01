@@ -13,26 +13,16 @@ class ViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     let identyfire = "newsCell"
-    var news: NewsDataModel?
-    var myNews = [Mymodel]()
-    var imageForPicture: UIImage?
-    var urlGenerator = UrlGenerationManager()
+    var viewModel: ViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
         self.searchBar.delegate = self
+        
+        self.viewModel = ViewModel()
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetail" {
-            if let dvc = segue.destination as? DetailViewController {
-                if let indexPath = tableView.indexPathForSelectedRow {
-                    dvc.article = myNews[indexPath.row]                    
-                }
-            }
-        }
-    }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
@@ -42,9 +32,10 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        myNews[indexPath.row].isvisited = true
+        viewModel?.workNews[indexPath.row].isvisited = true
         tableView.reloadData()
     }
+    
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 148.0
     }
@@ -53,34 +44,28 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         return "News Feed"
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myNews.count
+        return viewModel?.numberOfRows() ?? 0
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: identyfire) as? OneTableViewCell else {
-            return UITableViewCell()
-        }
-        cell.loadImage(imageUrl: myNews[indexPath.row].urlToImage)
-        cell.titleLabel.text = myNews[indexPath.row].title 
-        let hidden = myNews[indexPath.row].isvisited ? false : true
-        cell.visitedLabel.isHidden = hidden
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: identyfire) as? OneTableViewCell
+        guard let tableViewCell = cell, let viewModel = viewModel else { return UITableViewCell() }
+        let cellViewModel = viewModel.cellViewModel(atIndexPath: indexPath)
+        tableViewCell.viewModel = cellViewModel
+        return tableViewCell
     }
-    func transformToModel() {
-        myNews.removeAll()
-        guard let articles = news?.articles else { return }
-        for arcticle in articles {
-            myNews.append(Mymodel(title: arcticle.title ?? "title",
-                                  urlToImage: arcticle.urlToImage ?? "urlToImage",
-                                  isvisited: false,
-                                  publishedAt: arcticle.publishedAt ?? "publishedAt",
-                                  description: arcticle.description ?? "description",
-                                  url: arcticle.url))
+
+    
+    // нужно перевести детальное описание на мввм
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetail" {
+            if let dvc = segue.destination as? DetailViewController {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    dvc.article = viewModel?.workNews[indexPath.row]
+                }
+            }
         }
     }
 }
@@ -88,22 +73,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if let text = searchBar.text, text.count >= 3, let url =  urlGenerator.generate(text: text)  {
-            NetworkManager.getNews(requestUrl: url) { result in
-                switch result {
-                case .success(let json):
-                    DispatchQueue.main.async {
-                        self.news = json
-                        self.transformToModel()
-                        self.tableView.reloadData()
-                    }
-                case .failure(let error):
-                    print(error)
+        if let text = searchBar.text, let viewModel = viewModel {
+            viewModel.loadNews(text: text) {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
                 }
             }
-        } else {
-            self.news = nil
-            self.tableView.reloadData()
         }
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

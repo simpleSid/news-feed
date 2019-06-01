@@ -18,16 +18,12 @@ class NetworkManager {
     
     
     class func getNews(requestUrl: URL, complition: @escaping (Result<NewsDataModel, Error>) -> Void ) {
-        // получать фото через паттерн proxi 8 lesson
-        // urlseession по дефолту работает асинхронно удалить 110 строку
-        // url components  посмотреть применить 
         genericFetch(url: requestUrl, complition: complition)
     }
 }
 
 extension NetworkManager {
     class func genericFetch<T: Decodable>(url: URL, complition: @escaping(Result<T,Error>) -> Void) {
-        //  чтобы быть крутым вставить код в любой класс и не переписывать при этом
         
         let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
             if let error = error {
