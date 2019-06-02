@@ -9,6 +9,7 @@
 import UIKit
 
 class NewsViewController: UIViewController {
+    //Mark: View
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -22,7 +23,7 @@ class NewsViewController: UIViewController {
         
         self.viewModel = NewsViewModel()
     }
-
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
@@ -30,25 +31,17 @@ class NewsViewController: UIViewController {
 
 
 extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
+    //Mark: TableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         viewModel?.workNews[indexPath.row].isvisited = true
         tableView.reloadData()
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 148.0
-    }
-    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "News Feed"
     }
     
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.numberOfRows() ?? 0
-    }
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: identyfire) as? NewsTableViewCell
         guard let tableViewCell = cell, let viewModel = viewModel else { return UITableViewCell() }
@@ -56,9 +49,16 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         tableViewCell.viewModel = cellViewModel
         return tableViewCell
     }
-
     
-    // нужно перевести детальное описание на мввм
+    //Mark: TableViewDelegate
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 148.0
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel?.numberOfRows() ?? 0
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let dvc = segue.destination as? DetailNewsViewController {

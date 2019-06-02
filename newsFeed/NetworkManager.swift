@@ -11,12 +11,6 @@ import Foundation
 // все либо мендeжеры либо сервесы
 
 class NetworkManager {
-    
-    static var year = Calendar.current.component(Calendar.Component.year, from: Date())
-    static var month = Calendar.current.component(Calendar.Component.month, from: Date())
-    static var day = Calendar.current.component(Calendar.Component.day, from: Date())
-    
-    
     class func getNews(requestUrl: URL, complition: @escaping (Result<NewsDataModel, Error>) -> Void ) {
         genericFetch(url: requestUrl, complition: complition)
     }

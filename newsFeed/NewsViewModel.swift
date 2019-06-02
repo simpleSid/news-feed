@@ -43,7 +43,8 @@ class NewsViewModel {
     
     func loadNews(text: String, complition: @escaping () -> Void ) {
         guard text.count >= 3, let url =  urlGenerator.generate(text: text) else { return }
-        NetworkManager.getNews(requestUrl: url) { result in
+        NetworkManager.getNews(requestUrl: url) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let json):
                 self.news = json
