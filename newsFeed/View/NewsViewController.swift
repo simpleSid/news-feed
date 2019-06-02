@@ -50,7 +50,7 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: identyfire) as? OneTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: identyfire) as? NewsTableViewCell
         guard let tableViewCell = cell, let viewModel = viewModel else { return UITableViewCell() }
         let cellViewModel = viewModel.cellViewModel(atIndexPath: indexPath)
         tableViewCell.viewModel = cellViewModel
