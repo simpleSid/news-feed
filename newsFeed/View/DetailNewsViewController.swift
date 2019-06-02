@@ -21,6 +21,8 @@ class DetailNewsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dateConverte()
         initialView()
     }
     
@@ -47,5 +49,10 @@ class DetailNewsViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    func dateConverte() {
+        guard let viewModel = viewModel else { return }
+        viewModel.dateConvert()
     }
 }

@@ -18,7 +18,7 @@ class NewsViewModel {
     //MARK: Methods
     func cellViewModel(atIndexPath indexPath: IndexPath) -> TableViewCellViewModel {
         let news = workNews[indexPath.row]
-        return TableViewCellViewModel(new: news)
+        return TableViewCellViewModel(news: news)
     }
     
     func detailViewModel(atIndexPath indexPath: IndexPath) -> DetailNewsViewModel {
@@ -39,7 +39,7 @@ class NewsViewModel {
                                           isvisited: false,
                                           publishedAt: arcticle.publishedAt ?? "publishedAt",
                                           description: arcticle.description ?? "description",
-                                          url: arcticle.url))
+                                          url: arcticle.url ?? "url"))
         }
     }
     

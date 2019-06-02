@@ -9,10 +9,10 @@
 import Foundation
 
 struct NewsWorkModel {
-    let title: String
-    let urlToImage: String
+    var title: String
+    var urlToImage: String
     var isvisited: Bool
-    let publishedAt: String?
-    let description: String?
-    let url: String?
+    var publishedAt: String
+    var description: String
+    var url: String
 }

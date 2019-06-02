@@ -15,6 +15,7 @@
 		AAACFCDA22A3F84000399A25 /* DetailNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAACFCD922A3F84000399A25 /* DetailNewsViewController.swift */; };
 		AAACFCDC22A3F84700399A25 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAACFCDB22A3F84700399A25 /* NewsViewController.swift */; };
 		AAACFCDE22A3FFDE00399A25 /* DetailNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAACFCDD22A3FFDE00399A25 /* DetailNewsViewModel.swift */; };
+		AAACFCE222A46E7D00399A25 /* DateFormateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAACFCE122A46E7D00399A25 /* DateFormateManager.swift */; };
 		AABBC061229DCEA200D98C54 /* NewsDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABBC060229DCEA200D98C54 /* NewsDataModel.swift */; };
 		AAC98067229F1A85001B1ADA /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC98066229F1A85001B1ADA /* NetworkManager.swift */; };
 		AAC9806D229FDD24001B1ADA /* LoadImageManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC9806C229FDD24001B1ADA /* LoadImageManagerProtocol.swift */; };
@@ -37,6 +38,7 @@
 		AAACFCD922A3F84000399A25 /* DetailNewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailNewsViewController.swift; sourceTree = "<group>"; };
 		AAACFCDB22A3F84700399A25 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		AAACFCDD22A3FFDE00399A25 /* DetailNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsViewModel.swift; sourceTree = "<group>"; };
+		AAACFCE122A46E7D00399A25 /* DateFormateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormateManager.swift; sourceTree = "<group>"; };
 		AABBC060229DCEA200D98C54 /* NewsDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewsDataModel.swift; path = ../NewsDataModel.swift; sourceTree = "<group>"; };
 		AAC98066229F1A85001B1ADA /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		AAC9806C229FDD24001B1ADA /* LoadImageManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoadImageManagerProtocol.swift; path = ../LoadImageManagerProtocol.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				AAACFCE022A4232B00399A25 /* NetworkService */,
 				AAC98070229FDE80001B1ADA /* loadImgeService */,
 				AA32953D229C6AC50099649B /* Main.storyboard */,
+				AAACFCE322A4755700399A25 /* DateFormatService */,
 				AA329540229C6AC60099649B /* Assets.xcassets */,
 				AA329542229C6AC60099649B /* LaunchScreen.storyboard */,
 				AA329545229C6AC60099649B /* Info.plist */,
@@ -109,6 +112,14 @@
 				AAC9807322A05001001B1ADA /* UrlGenerationManager.swift */,
 			);
 			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		AAACFCE322A4755700399A25 /* DateFormatService */ = {
+			isa = PBXGroup;
+			children = (
+				AAACFCE122A46E7D00399A25 /* DateFormateManager.swift */,
+			);
+			path = DateFormatService;
 			sourceTree = "<group>";
 		};
 		AAC98070229FDE80001B1ADA /* loadImgeService */ = {
@@ -221,6 +232,7 @@
 				AAC98072229FF551001B1ADA /* Proxy.swift in Sources */,
 				AAC9807422A05001001B1ADA /* UrlGenerationManager.swift in Sources */,
 				AAACFCDC22A3F84700399A25 /* NewsViewController.swift in Sources */,
+				AAACFCE222A46E7D00399A25 /* DateFormateManager.swift in Sources */,
 				AA32953A229C6AC50099649B /* AppDelegate.swift in Sources */,
 				AAC9807C22A1CEE7001B1ADA /* TableViewCellViewModel.swift in Sources */,
 				AAC9807A22A1C4AC001B1ADA /* NewsViewModel.swift in Sources */,

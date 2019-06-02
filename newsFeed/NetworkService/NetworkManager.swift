@@ -8,8 +8,6 @@
 
 import Foundation
 
-// все либо мендeжеры либо сервесы
-
 class NetworkManager {
     //MARK: Methosds
     class func getNews(requestUrl: URL, complition: @escaping (Result<NewsDataModel, Error>) -> Void ) {

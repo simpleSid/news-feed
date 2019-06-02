@@ -8,13 +8,13 @@
 
 import Foundation
 
-struct NewsDataModel: Codable {
+struct NewsDataModel: Decodable {
     let status: String
     let totalResults: Int?
     let articles: [Article]?
 }
 
-struct Article: Codable {
+struct Article: Decodable {
     let source: Source?
     let author: String?
     let title: String?
@@ -25,7 +25,7 @@ struct Article: Codable {
     let content: String?
 }
 
-struct Source: Codable {
+struct Source: Decodable {
     let id: String?
     let name: String?
 }

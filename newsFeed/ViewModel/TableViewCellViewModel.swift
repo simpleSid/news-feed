@@ -11,22 +11,22 @@ import Foundation
 class TableViewCellViewModel {
     
     //MARK: Properties
-    private var new: NewsWorkModel
+    private var news: NewsWorkModel
     var newUrlImage: String {
-        return new.urlToImage
+        return news.urlToImage
     }
     var title: String {
-        return new.title
+        return news.title
     }
-    var newUrl: String {
-        return new.url ?? "non"
+    var newsUrl: String {
+        return news.url 
     }
     var visited: Bool {
-        return new.isvisited
+        return news.isvisited
     }
     
-    init(new: NewsWorkModel) {
-        self.new = new
+    init(news: NewsWorkModel) {
+        self.news = news
     }
     
     //MARK: Methods

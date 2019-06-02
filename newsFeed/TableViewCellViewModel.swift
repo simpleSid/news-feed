@@ -1,34 +1,32 @@
 //
-//  DetailNewsViewModel.swift
+//  TableViewCellViewModel.swift
 //  newsFeed
 //
-//  Created by Денис Сидоренко on 02/06/2019.
+//  Created by Денис Сидоренко on 01/06/2019.
 //  Copyright © 2019 Денис Сидоренко. All rights reserved.
 //
 
 import Foundation
 
-class DetailNewsViewModel {
+class TableViewCellViewModel {
     
-    //MARK: properties
-    var news: NewsWorkModel
+    //MARK: Properties
+    private var new: NewsWorkModel
     var newUrlImage: String {
-        return news.urlToImage
+        return new.urlToImage
     }
     var title: String {
-        return news.title
+        return new.title
     }
-    var description: String {
-        return news.description
+    var newUrl: String {
+        return new.url ?? "non"
     }
-    var publishedAt: String {
-        return news.publishedAt 
+    var visited: Bool {
+        return new.isvisited
     }
-    var url: String {
-        return news.url 
-    }
-    init(news: NewsWorkModel) {
-        self.news = news
+    
+    init(new: NewsWorkModel) {
+        self.new = new
     }
     
     //MARK: Methods
@@ -44,9 +42,5 @@ class DetailNewsViewModel {
                 complition(data, nil)
             }
         }
-    }
-    
-    func dateConvert() {
-        news.publishedAt = DateFormateManager.dateConvert(dateString: news.publishedAt)
     }
 }
