@@ -9,16 +9,14 @@
 import Foundation
 
 class UrlGenerationManager {
-
+    //MARK: Properties
     private var urlComponents = URLComponents()
-    
     private var year = Calendar.current.component(Calendar.Component.year, from: Date())
     private var month = Calendar.current.component(Calendar.Component.month, from: Date())
     private var day = Calendar.current.component(Calendar.Component.day, from: Date())
-    
     private var queryItems = [URLQueryItem]()
 
-    
+    //MARK: Methods
     func generate(text: String) -> URL? {
         queryItems.removeAll()
         queryItems.append(URLQueryItem(name: "q", value: "\(text)"))

@@ -10,6 +10,7 @@ import Foundation
 
 class TableViewCellViewModel {
     
+    //MARK: Properties
     private var new: NewsWorkModel
     var newUrlImage: String {
         return new.urlToImage
@@ -28,6 +29,7 @@ class TableViewCellViewModel {
         self.new = new
     }
     
+    //MARK: Methods
     func loadImage(complition: @escaping (Data?, String?) -> Void) {
         let imageManager = LoadImageManager()
         let proxy = Proxy(manager: imageManager)

@@ -9,6 +9,7 @@
 import Foundation
 
 class LoadImageManager: LoadImageManagerProtocol {
+    //MARK: Methods
     func loadImage(url: URL, complition: @escaping (Data?, URLResponse?, Error?) -> ()) {
         let config = URLSessionConfiguration.default
         config.requestCachePolicy = .reloadIgnoringLocalCacheData

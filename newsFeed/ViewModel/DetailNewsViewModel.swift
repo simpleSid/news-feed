@@ -10,7 +10,7 @@ import Foundation
 
 class DetailNewsViewModel {
     
-    //Mark: properties
+    //MARK: properties
     var news: NewsWorkModel
     var newUrlImage: String {
         return news.urlToImage
@@ -35,7 +35,7 @@ class DetailNewsViewModel {
         self.news = news
     }
     
-    //Mark: Methods
+    //MARK: Methods
     func loadImage(complition: @escaping (Data?, String?) -> Void) {
         let imageManager = LoadImageManager()
         let proxy = Proxy(manager: imageManager)

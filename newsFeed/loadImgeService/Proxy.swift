@@ -8,12 +8,13 @@
 
 import Foundation
 
-// тут надо все писать в core data и брать оттуда
+// тут надо все писать в file manager и брать оттуда
 //var cacheDate: Data?
 
 class Proxy: LoadImageManagerProtocol {
+    //MARK: Properties
     private var manager: LoadImageManagerProtocol
-    
+    //MARK: Methods
     init(manager: LoadImageManagerProtocol) {
         self.manager = manager
     }

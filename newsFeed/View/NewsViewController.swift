@@ -16,6 +16,7 @@ class NewsViewController: UIViewController {
     let identyfire = "newsCell"
     var viewModel: NewsViewModel?
     
+    //MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self

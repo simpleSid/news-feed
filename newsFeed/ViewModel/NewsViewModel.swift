@@ -10,10 +10,12 @@ import Foundation
 
 class NewsViewModel {
     
+    //MARK: Properties
     var news: NewsDataModel?
     var workNews = [NewsWorkModel]()
     var urlGenerator = UrlGenerationManager()
     
+    //MARK: Methods
     func cellViewModel(atIndexPath indexPath: IndexPath) -> TableViewCellViewModel {
         let news = workNews[indexPath.row]
         return TableViewCellViewModel(new: news)
