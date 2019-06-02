@@ -21,12 +21,6 @@ class NewsTableViewCell: UITableViewCell {
         }
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        // Initialization code
-    }
-
     // Mark: Methods
     func initialisationCel() {
         guard let viewModel = viewModel else { return }
