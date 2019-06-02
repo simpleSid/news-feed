@@ -98,10 +98,10 @@
             </objects>
             <point key="canvasLocation" x="831.88405797101461" y="782.8125"/>
         </scene>
-        <!--Detail View Controller-->
+        <!--Detail News View Controller-->
         <scene sceneID="FAi-mZ-KXE">
             <objects>
-                <viewController id="rUw-zN-akR" customClass="DetailViewController" customModule="newsFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="rUw-zN-akR" customClass="DetailNewsViewController" customModule="newsFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W1h-KX-mqm">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailNewsViewController: UIViewController {
 
     @IBOutlet weak var detailImageView: UIImageView!
     @IBOutlet weak var detailTitleLabel: UILabel!
@@ -17,6 +17,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailUrlLabel: UILabel!
     
     var article: NewsWorkModel?
+    var viewModel: NewsWorkModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()

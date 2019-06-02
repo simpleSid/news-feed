@@ -1,33 +1,38 @@
 //
-//  TableViewCellViewModel.swift
+//  DetailNewsViewModel.swift
 //  newsFeed
 //
-//  Created by Денис Сидоренко on 01/06/2019.
+//  Created by Денис Сидоренко on 02/06/2019.
 //  Copyright © 2019 Денис Сидоренко. All rights reserved.
 //
 
 import Foundation
 
-class TableViewCellViewModel {
+class DetailNewsViewModel {
     
-    private var new: NewsWorkModel
+    //Mark: properties
+    var news: NewsWorkModel
     var newUrlImage: String {
-        return new.urlToImage
+        return news.urlToImage
     }
     var title: String {
-        return new.title
+        return news.title
     }
     var newUrl: String {
-        return new.url ?? "non"
+        return news.url ?? "no url"
     }
-    var visited: Bool {
-        return new.isvisited
+    var description: String {
+        return news.description ?? "no description"
+    }
+    var publishedAt: String {
+        return news.publishedAt ?? "no date"
     }
     
-    init(new: NewsWorkModel) {
-        self.new = new
+    init(news: NewsWorkModel) {
+        self.news = news
     }
     
+    //Mark: Methods
     func loadImage(complition: @escaping (Data?, String?) -> Void) {
         let imageManager = LoadImageManager()
         let proxy = Proxy(manager: imageManager)
