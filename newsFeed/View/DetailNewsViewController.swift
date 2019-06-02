@@ -10,41 +10,40 @@ import UIKit
 
 class DetailNewsViewController: UIViewController {
 
+    //Mark: View
     @IBOutlet weak var detailImageView: UIImageView!
     @IBOutlet weak var detailTitleLabel: UILabel!
     @IBOutlet weak var detailDescriptionTextView: UITextView!
-    @IBOutlet weak var detailDateLabel: UILabel!
+    @IBOutlet weak var detailPublisheadAtLabel: UILabel!
     @IBOutlet weak var detailUrlLabel: UILabel!
     
-    var article: NewsWorkModel?
-    var viewModel: NewsWorkModel?
+    var viewModel: DetailNewsViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let article = self.article {
-            detailTitleLabel.text = article.title
-            detailDescriptionTextView.text = article.description
-            detailDateLabel.text = article.publishedAt
-            detailUrlLabel.text = article.url
-            loadImage(imageUrl: article.urlToImage)
-        }
+        initialView()
     }
     
-    func loadImage(imageUrl: String) {
-        let imageManager = LoadImageManager()
-        let proxy = Proxy(manager: imageManager)
-        if let url = URL(string: imageUrl) {
-            proxy.loadImage(url: url) { [weak self] (data, response, error) in
-                guard let self = self else { return }
-                guard let data = data, error == nil else {
-                    DispatchQueue.main.async {
-                        self.detailImageView.image = UIImage(named: "defoltNewsImage")
-                    }
-                    return
-                }
+    //Mark: Methods
+    func initialView() {
+        guard let viewModel = viewModel else { return }
+        detailTitleLabel.text = viewModel.title
+        detailDescriptionTextView.text = viewModel.description
+        detailPublisheadAtLabel.text = viewModel.publishedAt
+        detailUrlLabel.text = viewModel.url
+        getPhoto(viewModel)
+    }
+    
+    fileprivate func getPhoto(_ viewModel: DetailNewsViewModel) {
+        viewModel.loadImage { [weak self] (data, defoltName) in
+            guard let self = self else { return }
+            if let data = data {
                 DispatchQueue.main.async {
                     self.detailImageView.image = UIImage(data: data)
+                }
+            } else if let defoltName = defoltName {
+                DispatchQueue.main.async {
+                    self.detailImageView.image = UIImage(named: defoltName)
                 }
             }
         }

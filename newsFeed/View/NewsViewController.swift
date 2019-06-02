@@ -62,8 +62,8 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let dvc = segue.destination as? DetailNewsViewController {
-                if let indexPath = tableView.indexPathForSelectedRow {
-                    dvc.article = viewModel?.workNews[indexPath.row]
+                if let indexPath = tableView.indexPathForSelectedRow, let viewModel = viewModel {
+                    dvc.viewModel = viewModel.detailViewModel(atIndexPath: indexPath)
                 }
             }
         }

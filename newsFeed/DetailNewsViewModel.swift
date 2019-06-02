@@ -27,6 +27,9 @@ class DetailNewsViewModel {
     var publishedAt: String {
         return news.publishedAt ?? "no date"
     }
+    var url: String {
+        return news.url ?? "no url"
+    }
     
     init(news: NewsWorkModel) {
         self.news = news

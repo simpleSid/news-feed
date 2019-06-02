@@ -15,8 +15,13 @@ class NewsViewModel {
     var urlGenerator = UrlGenerationManager()
     
     func cellViewModel(atIndexPath indexPath: IndexPath) -> TableViewCellViewModel {
-        let new = workNews[indexPath.row]
-        return TableViewCellViewModel(new: new)
+        let news = workNews[indexPath.row]
+        return TableViewCellViewModel(new: news)
+    }
+    
+    func detailViewModel(atIndexPath indexPath: IndexPath) -> DetailNewsViewModel {
+        let news = workNews[indexPath.row]
+        return DetailNewsViewModel(news: news)
     }
     
     func numberOfRows() -> Int {
