@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ViewModel {
+class NewsViewModel {
     
     var news: NewsDataModel?
     var workNews = [NewsWorkModel]()
