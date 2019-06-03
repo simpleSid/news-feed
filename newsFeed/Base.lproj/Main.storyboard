@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--News View Controller-->
+        <!--News Feed-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="NewsViewController" customModule="newsFeed" customModuleProvider="target" sceneMemberID="viewController">
@@ -33,14 +33,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Заголовок этой статьи" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qod-yI-dtI">
-                                                    <rect key="frame" x="138" y="8" width="260" height="84.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <rect key="frame" x="138" y="8" width="260" height="87"/>
+                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="25"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="visited" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pxz-Dx-kK8">
-                                                    <rect key="frame" x="138" y="100.5" width="240" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="138" y="103" width="240" height="18"/>
+                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -78,21 +78,28 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="z99-Gv-h2N"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="9Fy-nA-LHN">
+                                <rect key="frame" x="188.5" y="456.5" width="37" height="37"/>
+                                <color key="color" red="0.42825648770000002" green="0.86865482230000002" blue="0.55630928430000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="4BC-FX-Cul" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="2dy-6e-gP8"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cbT-WM-7Xl" secondAttribute="trailing" id="AUS-qV-zCI"/>
+                            <constraint firstItem="9Fy-nA-LHN" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="RyC-69-za6"/>
                             <constraint firstItem="cbT-WM-7Xl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="U7j-Zj-D2B"/>
                             <constraint firstItem="4BC-FX-Cul" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="haN-e8-lhP"/>
+                            <constraint firstItem="9Fy-nA-LHN" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="igB-ni-EFI"/>
                             <constraint firstItem="4BC-FX-Cul" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="k3a-gg-33A"/>
                             <constraint firstItem="cbT-WM-7Xl" firstAttribute="top" secondItem="4BC-FX-Cul" secondAttribute="bottom" id="r05-4J-MtF"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="cbT-WM-7Xl" secondAttribute="bottom" id="tob-gP-96j"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="UAb-wC-NSZ"/>
+                    <navigationItem key="navigationItem" title="News Feed" id="UAb-wC-NSZ"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="9Fy-nA-LHN" id="e0V-1x-oU4"/>
                         <outlet property="searchBar" destination="4BC-FX-Cul" id="0JC-bi-Mya"/>
                         <outlet property="tableView" destination="cbT-WM-7Xl" id="yFM-PU-5hP"/>
                     </connections>
@@ -116,27 +123,27 @@
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4nW-hU-QJP">
-                                <rect key="frame" x="16" y="576.5" width="382" height="272.5"/>
+                                <rect key="frame" x="16" y="574" width="382" height="276"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UWz-15-QYJ">
-                                <rect key="frame" x="16" y="857" width="382" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="16" y="858" width="382" height="20"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="url" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X3c-ud-2tN">
-                                <rect key="frame" x="16" y="510" width="382" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="16" y="510" width="382" height="18"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
                                 <color key="textColor" red="0.50281567258883242" green="0.50281567258883242" blue="0.50281567258883242" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MLF-lX-FYb">
-                                <rect key="frame" x="16" y="538.5" width="382" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <rect key="frame" x="16" y="536" width="382" height="30"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -173,7 +180,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B4I-z0-lcI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1740.5797101449277" y="782.8125"/>
+            <point key="canvasLocation" x="1690" y="783"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7Y7-5C-gW7">

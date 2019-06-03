@@ -12,6 +12,7 @@ class NewsViewController: UIViewController {
     //Mark: View
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     let identyfire = "newsCell"
     var viewModel: NewsViewModel?
@@ -23,10 +24,21 @@ class NewsViewController: UIViewController {
         self.searchBar.delegate = self
         
         self.viewModel = NewsViewModel()
+        stopAnimatingActivityIndicator()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    func startAnimatingActivityIndicator() {
+        activityIndicator.startAnimating()
+        activityIndicator.isHidden = false
+    }
+    
+    func stopAnimatingActivityIndicator() {
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
     }
 }
 
@@ -37,10 +49,6 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         viewModel?.workNews[indexPath.row].isvisited = true
         tableView.reloadData()
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "News Feed"
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -74,10 +82,13 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension NewsViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if let text = searchBar.text, let viewModel = viewModel {
-            viewModel.loadNews(text: text) {
+        if let text = searchBar.text, let viewModel = viewModel, text.count >= 3 {
+            startAnimatingActivityIndicator()
+            viewModel.loadNews(text: text) { [weak self] in
+                guard let self = self else { return }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.stopAnimatingActivityIndicator()
                 }
             }
         }

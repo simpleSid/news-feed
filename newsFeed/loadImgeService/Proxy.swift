@@ -8,25 +8,19 @@
 
 import Foundation
 
-// тут надо все писать в file manager и брать оттуда
-//var cacheDate: Data?
-
 class Proxy: LoadImageManagerProtocol {
+
     //MARK: Properties
     private var manager: LoadImageManagerProtocol
+    
     //MARK: Methods
     init(manager: LoadImageManagerProtocol) {
         self.manager = manager
     }
     
     func loadImage(url: URL, complition: @escaping (Data?, URLResponse?, Error?) -> ()) {
-//        if cacheDate == nil {
-            manager.loadImage(url: url) { (data, response, error) in
-//                cacheDate = data
-                complition(data,response,error)
-            }
-//        } else {
-//            complition(cacheDate,nil,nil)
-//        }
+        manager.loadImage(url: url) { (data, response, error) in
+            complition(data,response,error)
+        }
     }
 }
